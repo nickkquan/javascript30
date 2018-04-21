@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Console Tricks!</title>
 </head>
+
 <body>
 
   <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
   <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+    const dogs = [{ name: 'Crouton', age: 1.5 }, { name: 'Dakota', age: 8 }];
 
     function makeGreen() {
       const p = document.querySelector('p');
@@ -18,29 +20,66 @@
     }
 
     // Regular
+    console.log("Hello, world!");
 
     // Interpolated
+    console.log("This is a %s test", "cool");
 
     // Styled
+    console.log("%c I am some sample text", "background: blue");
 
-    // warning!
+    // warning! - yellow
+    console.warn("Warning, danger Will Robinson!");
 
-    // Error :|
+    // Error :| - red
+    console.error("Error error")
 
-    // Info
+    // Info - Provides little i next to console.log 
+    console.info("Service guarantees citizenship! Would you like to know more?");
 
-    // Testing
+    // Testing - Fires when false
+    const p = document.querySelector('p');
 
-    // clearing
+    console.assert(1 === 2, "Assertion is not true");
+
+    // Can be used to test if elements contain a class. For example:
+
+    console.assert(p.classList.contains('ramen'), 'Assertion failed: no class found.')
+
+    // Clearing
+    // console.clear();
 
     // Viewing DOM Elements
+    console.dir(p);
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`) // Can also switch to console.groupCollapsed()
+      console.log(`This is dog's name: ${dog.name}`);
+      console.log(`This is dog's age: ${dog.age}`);
+      console.log(`How old my dogs are in human years: ${dog.age * 7}`)
+      console.groupEnd(`${dog.name}`)
+    })
 
     // counting
+    console.count('Crouton');
+    console.count('Nick');
+    console.count('Emily');
+    console.count('Nick');
+    console.count('Nick');
+    console.count('Emily');
+    console.count('Crouton');
 
     // timing
-
+    console.time('Retrieving GitHub infomation');
+    fetch('https://api.github.com/users/nickkquan')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('Retrieving GitHub infomation')
+        console.log(data)
+        console.table(data)
+      })
   </script>
 </body>
+
 </html>
